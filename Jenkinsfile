@@ -49,7 +49,7 @@ pipeline {
                     sh 'docker build -t ${DOCKER_HUB_USERNAME}/ss:${BUILD_NUMBER} .'
                     sh 'docker tag ${DOCKER_HUB_USERNAME}/ss:${BUILD_NUMBER} ${DOCKER_HUB_USERNAME}/ss:latest'
                     sh 'echo "${DOCKER_HUB_PASSWORD}" | docker login -u "${DOCKER_HUB_USERNAME}" --password-stdin'
-                    sh 'curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sudo sh -s -- -b /usr/local/bin'
+                    //sh 'curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sudo sh -s -- -b /usr/local/bin'
                     sh 'docker-scout cves ${DOCKER_HUB_USERNAME}/ss:${BUILD_NUMBER} --exit-code --only-severity critical,high'
                     sh 'docker push ${DOCKER_HUB_USERNAME}/ss:${BUILD_NUMBER}'
                     sh 'docker push ${DOCKER_HUB_USERNAME}/ss:latest'
