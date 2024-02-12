@@ -31,7 +31,7 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage(''){
+        stage('Build Java'){
             steps{
                 sh 'mvn package'
             }
