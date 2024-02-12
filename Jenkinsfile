@@ -47,6 +47,13 @@ pipeline {
                 }
             }
         }
+        stage('Remove Docker Images') {
+            steps {
+                script {
+                    sh 'docker rmi -f $(docker images -q)'
+                }
+            }
+        }
 
     }
 }
