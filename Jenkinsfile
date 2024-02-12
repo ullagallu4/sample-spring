@@ -22,9 +22,11 @@ pipeline {
             }
         }
         stage('versions'){
-            script{
-                sh 'mvn --version'
-                sh 'java --version'
+            steps{
+                script{
+                    sh 'mvn --version'
+                    sh 'java --version'
+                }
             }
         }
     }
