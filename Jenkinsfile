@@ -23,17 +23,7 @@ pipeline {
         }
         stage('Maven Clean'){
             steps{
-                sh 'mvn clean'
-            }
-        }
-        stage('Maven test'){
-            steps{
-                sh 'mvn test'
-            }
-        }
-        stage('Build Java'){
-            steps{
-                sh 'mvn package'
+                sh 'mvn clean install package'
             }
         }
         stage('DockerBuild'){
@@ -48,6 +38,7 @@ pipeline {
                 }
             }
         }
+
         stage('Remove Docker Images') {
             steps {
                 script {
