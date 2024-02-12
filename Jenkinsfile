@@ -38,7 +38,8 @@ pipeline {
         }
         stage('DockerBuild'){
             steps{
-                sh 'docker build -t service:latest .'
+                sh 'docker build -t ss:${BUILD_NUMBER} .'
+                sh 'docker tag ss:${BUILD_NUMBER} ss:latest'
             }
         }
     }
