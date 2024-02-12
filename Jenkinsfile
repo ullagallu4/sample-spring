@@ -36,5 +36,10 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('DockerBuild'){
+            steps{
+                sh 'docker build -t service:latest .'
+            }
+        }
     }
 }
