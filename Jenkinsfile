@@ -40,7 +40,7 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
                         sh 'docker build -t ss:${BUILD_NUMBER} .'
-                        sh 'docker tag ss:${BUILD_NUMBER} ${DOCKER_HUB_USERNAME}/ss:latest'
+                        sh 'docker tag ss:${BUILD_NUMBER} ss:latest'
                         sh 'echo "${DOCKER_HUB_PASSWORD}" | docker login -u "${DOCKER_HUB_USERNAME}" --password-stdin'
                         sh 'docker push ${DOCKER_HUB_USERNAME}/ss:${BUILD_NUMBER}'
                         sh 'docker push ${DOCKER_HUB_USERNAME}/ss:latest'
