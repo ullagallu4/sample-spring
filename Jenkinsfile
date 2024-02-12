@@ -21,13 +21,20 @@ pipeline {
                git branch: 'main', url: 'https://github.com/ullagallu4/sample-spring.git'
             }
         }
-        stage('versions'){
+        stage('Maven Clean'){
             steps{
-                script{
-                    sh 'mvn --version'
-                    sh 'java --version'
-                }
+                sh 'mvn clean'
             }
+        }
+        stage('Maven test'){
+            steps{
+                sh 'mvn test'
+            }
+        }
+    }
+    post{
+        always{
+            cleanWs()
         }
     }
 }
