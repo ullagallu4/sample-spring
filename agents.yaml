@@ -20,9 +20,12 @@ spec:
     - cat
     tty: true
     volumeMounts:
-    - name: jenkins-agents-data
+    - name: docker-sock 
       mountPath: /var/run/docker.sock
   volumes:
   - name: jenkins-agents-data
     persistentVolumeClaim:
         claimName: jenkins-agents
+  - name: docker-sock
+    hostPath:
+      path: /var/run/docker.sock
