@@ -7,7 +7,9 @@ pipeline {
     triggers {
         pollSCM('* * * * *')
     }
-
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '2'))
+    }
     stages {
         stage("Git Version") {
             steps {
@@ -16,14 +18,22 @@ pipeline {
                 }
             }
         }
-        stage("Maven Version") {
-            steps {
-                container("maven"){
-                    script{
-                       sh 'mvn clean install package'
-                    }
+        // stage("Maven Version") {
+        //     steps {
+        //         container("maven"){
+        //             script{
+        //                sh 'mvn clean install package'
+        //             }
+        //         }
+        //     }
+        // }
+        stage("Docker"){
+            steps{
+                container(){
+                    sh 'docker version'
                 }
             }
         }
+
     }
 }
