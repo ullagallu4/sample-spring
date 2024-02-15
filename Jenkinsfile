@@ -29,7 +29,7 @@ pipeline {
         // }
         stage("Docker"){
             steps{
-                container(){
+                container("docker"){
                     sh 'docker version'
                 }
             }
