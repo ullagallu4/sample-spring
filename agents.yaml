@@ -15,13 +15,13 @@ spec:
     - name: jenkins-agents-data 
       mountPath: /root/.m2
   - name: docker
-    image: docker
+    image: docker:latest
     command:
     - cat
     tty: true
     volumeMounts:
-    - name: docker-sock 
-      mountPath: /var/run/docker.sock
+    - mountPath: /var/run/docker.sock
+      name: docker-sock
   volumes:
   - name: jenkins-agents-data
     persistentVolumeClaim:

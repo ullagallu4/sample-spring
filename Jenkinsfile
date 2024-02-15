@@ -2,7 +2,6 @@ pipeline {
     agent {
         kubernetes{
             yamlFile 'agents.yaml'
-            defaultContainer 'jnlp'
         }
     }
     triggers {
