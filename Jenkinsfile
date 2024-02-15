@@ -19,7 +19,11 @@ pipeline {
         stage("Maven Version") {
             steps {
                 container("maven"){
-                    sh 'mvn clean install package'
+                    script{
+                        sh 'git --version'
+                        sh 'mvn --version'
+                        sh 'java --version'
+                    }
                 }
             }
         }
